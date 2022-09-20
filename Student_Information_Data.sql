@@ -1,0 +1,1 @@
+SELECT * FROM qset.student_info;
