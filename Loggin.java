@@ -1,4 +1,4 @@
-   
+package com.velocity.MyQiuz;   
 
 	import java.sql.Connection;
 	import java.sql.PreparedStatement;

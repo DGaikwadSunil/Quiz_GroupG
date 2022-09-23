@@ -31,5 +31,54 @@ public class AddQuestion {
 		
 	}
 		
+public int display_question() {
+			int Count = 0;
+			int QCount = 1;
+			try {
+				
+				ConnectionTest connectiontest = new ConnectionTest();
+				 con = connectiontest.getConnection();
+				 Statement state =  (Statement) con.createStatement();
+				 String sql = "Select Question, Option1, Option2,Option3,Option4,Answer from test ORDER BY RAND() Limit 10";
+				 ResultSet RS = ((java.sql.Statement) state).executeQuery(sql);
+				 while(RS.next()) {
+					 System.out.println("\n\nQuestion number:"+QCount);
+					 System.out.println("\n\nQuestion : "+RS.getString(1));
+					 System.out.print("\nOption 1 is : "+RS.getString(2));
+					 System.out.print("\t\t Option 2 is : "+RS.getString(3));
+					 System.out.print("\n\nOption 3 is : "+RS.getString(4));
+					 System.out.print("\t\t Option 4 is : "+RS.getString(5));
+					 System.out.print("\n\nEnter your choice :- ");
+					 Scanner sc = new Scanner(System.in);
+					 String Ans = sc.next();
+		             if(Ans.equals(RS.getString(6))) {
+		            	 Count++;
+		             }
+		             QCount++;
+
+					 
+				 }
+				 System.out.println(" \n Your Score is :" +Count);
+				 if(Count>=8 && Count<=10) {
+					 System.out.println("\n Class A");
+				 }
+				 else if(Count>=6 && Count<=8) {
+					 System.out.println("\n Class B");
+				 }
+				 else if(Count==5) {
+					 System.out.println("\n Class C");
+				 }
+				 else {
+					 System.out.println("\n Fail");
+				 }
+				
+				
+				 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+			 return Count;
+			
+		}
 
 }
